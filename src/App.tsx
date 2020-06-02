@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import KanbanBoard from './components/KanbanBoard';
+import PhoneContactsList from './components/PhoneContactsList';
 
 function App() {
   return (
     <div className="App">
-      <KanbanBoard></KanbanBoard>
+      <PhoneContactsList></PhoneContactsList>
     </div>
   );
 }
