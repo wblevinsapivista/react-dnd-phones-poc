@@ -3,7 +3,7 @@ import { DragDropContext } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import update from "immutability-helper";
 import PhoneContactRow from './PhoneContactRow';
-import PhoneContact from './PhoneContact'
+import { PhoneContact } from './PhoneContact'
 
 const phones = [
   { _id: 0, number: "+12342345344", primary: true },
@@ -19,7 +19,7 @@ const phones = [
 ];
 
 const rows = ["primary", "secondary"];
-const labelsMap = {
+const labelsMap: any = {
   primary: "primary",
   secondary: "secondary"
 };
@@ -54,17 +54,12 @@ const classes = {
 };
 
 class PhoneContactsList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      phones
-    };
-  }
-  
-  updatePrimary = (id, newPrimary) => {
+  state: any = { phones }
+
+  updatePrimary = (id: number, newPrimary: boolean) => {
     const { phones } = this.state;
     
-    const oldPhone = phones.find(phone => phone.primary === true);
+    const oldPhone = phones.find((phone: any) => phone.primary === true);
     oldPhone.primary = false;
     
     const newPrimaryIndex = phones.indexOf(newPrimary);
@@ -86,12 +81,11 @@ class PhoneContactsList extends React.Component {
           <div>
             <PhoneContactRow>
               <div style={classes.row}>
-                <div style={classes.columnHead}>{labelsMap[rows]}</div>
                 <div>
                   {phones
-                    .filter(phone => phone.primary === true)
-                    .map((phone, ndx) => (
-                      <PhoneContact id={phone._id} onDrop={(phoneNdx) => this.updatePrimary(ndx, phones[phoneNdx])}>
+                    .filter((phone: any) => phone.primary === true)
+                    .map((phone: any, ndx: number) => (
+                      <PhoneContact id={phone._id} onDrop={(phoneNdx: any) => this.updatePrimary(ndx, phones[phoneNdx])}>
                         <div style={classes.item}>{phone.number}</div>
                       </PhoneContact>
                   ))}
@@ -100,12 +94,11 @@ class PhoneContactsList extends React.Component {
             </PhoneContactRow> 
             <PhoneContactRow status={rows}>
               <div style={classes.row}>
-                <div style={classes.columnHead}>{labelsMap[rows]}</div>
                 <div>
                   {phones
-                    .filter(phone => phone.primary === false)
-                    .map((phone, ndx) => (
-                      <PhoneContact id={phone._id} onDrop={(phoneNdx) => this.updatePrimary(ndx, phones[phoneNdx])}>
+                    .filter((phone: any) => phone.primary === false)
+                    .map((phone: any, ndx: number) => (
+                      <PhoneContact id={phone._id} onDrop={(phoneNdx: number) => this.updatePrimary(ndx, phones[phoneNdx])}>
                         <div style={classes.item}>{phone.number}</div>
                       </PhoneContact>
                   ))}

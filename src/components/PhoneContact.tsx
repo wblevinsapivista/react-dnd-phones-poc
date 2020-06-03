@@ -1,14 +1,15 @@
 import React from 'react';
 import { DragSource } from 'react-dnd';
 
+
 const boxSource = {
-    beginDrag(props) {
+    beginDrag(props: any) {
         return {
             name: props.id
         };
     },
   
-    endDrag(props, monitor) {
+    endDrag(props: any, monitor: any) {
         const item = monitor.getItem();
         const dropResult = monitor.getDropResult();
         if (dropResult) {
@@ -17,13 +18,13 @@ const boxSource = {
     }
 };
   
-class PhoneContact extends React.Component {
+class PhoneContactClass extends React.Component<any> {
     render() {
         return this.props.connectDragSource(<div>{this.props.children}</div>);
     }
 }
-  
-export default PhoneContact = DragSource("phoneContact", boxSource, (connect, monitor) => ({
+
+export const PhoneContact: any =  DragSource("phoneContact", boxSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
     isDragging: monitor.isDragging()
-}))(PhoneContact);
+}))(PhoneContactClass);
